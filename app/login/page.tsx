@@ -118,7 +118,7 @@ export default function LoginPage() {
               initial={{ scale: 0.8, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               transition={{ delay: 0.2, duration: 0.5 }}
-              className="relative z-10 text-white text-center p-2"
+              className="relative z-10 text-white text-center p-1"
             >
               <h3 className="text-3xl font-bold mb-4">Track Your Lifts</h3>
               <p className="text-lg">Achieve your fitness goals with our powerful tracking tools</p>
