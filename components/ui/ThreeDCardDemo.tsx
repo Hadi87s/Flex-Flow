@@ -12,7 +12,7 @@ interface CardProps {
 export function ThreeDCardDemo({src,group}: CardProps) {
   return (
     <CardContainer className="inter-var">
-      <CardBody className="transition duration-300 bg-gray-50 relative group/card dark:hover:shadow-2xl dark:hover:shadow-emerald-500/[0.1] bg-zinc-900 w-auto sm:w-[25rem] h-auto rounded-2xl p-6  border-2 border-amber-900">
+      <CardBody className="transition duration-300 relative group/card dark:hover:shadow-2xl dark:hover:shadow-amber-500/[0.1] bg-zinc-900 w-auto sm:w-[25rem] h-auto rounded-2xl p-6  border-2 border-amber-900">
         <CardItem
           translateZ="50"
           className="text-2xl font-bold text-neutral-600 dark:text-white"

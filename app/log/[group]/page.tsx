@@ -1,4 +1,4 @@
-import MuscleGroup from '@/component/muscle-group/MuscleGroup';
+import MuscleGroup from '@/components/muscle-group/MuscleGroup';
 import { log } from 'console';
 import React from 'react'
 
