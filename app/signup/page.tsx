@@ -2,22 +2,43 @@
 
 import type React from "react"
 
-import { useState } from "react"
-import { motion } from "framer-motion"
+import { useEffect, useState } from "react"
+import { AnimatePresence, motion } from "framer-motion"
 import Link from "next/link"
+import { validateEmail, validatePassword } from "@/utils/validator"
+import ErrorMessage from "@/components/error-message/ErrorMessage"
+import { CheckCheck } from "lucide-react"
 
 export default function SignupPage() {
   const [name, setName] = useState("")
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [confirmPassword, setConfirmPassword] = useState("")
-
+  const [error, setError] = useState<Validate>({emailError: false, passwordError: false, passwordMismatch: false});
+  const [isSuccessful, setIsSuccessful] = useState(false)
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    // Handle signup logic here
-  }
+    if (!validateEmail(email)) {
+      setError({...error, emailError: true});
+    }
+    if (!validatePassword(password)) {
+      setError({...error, passwordError: true});
+    }
+    if(password != confirmPassword) {
+      setError({...error, passwordMismatch: true});
+    }
+    // here the user is signedUp successfully! 
+    setIsSuccessful(true);
+    }
+
+    useEffect(()=> {
+      setTimeout(()=> {
+        setIsSuccessful(false);
+      },3000)
+    },[isSuccessful])
 
   return (
+    <>
     <div className="flex items-center justify-center min-h-screen bg-zinc-900 p-6">
       <div className="w-full max-w-4xl flex rounded-3xl overflow-hidden shadow-2xl">
         <motion.div
@@ -75,6 +96,7 @@ export default function SignupPage() {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                 />
+                <ErrorMessage error={error.emailError} message="Invalid Email Address."/>
               </motion.div>
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -115,6 +137,8 @@ export default function SignupPage() {
                   value={confirmPassword}
                   onChange={(e) => setConfirmPassword(e.target.value)}
                 />
+                <ErrorMessage error={error.passwordError} message="Password must be at least 8 characters long with at least a capital, a small letter and and one special character."/>
+                <ErrorMessage error={error.passwordMismatch} message="Passwords doesn't match."/>
               </motion.div>
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -186,6 +210,22 @@ export default function SignupPage() {
         </motion.div>
       </div>
     </div>
+    <AnimatePresence>
+      {isSuccessful && (
+        <motion.div 
+          initial={{ scale: 0, opacity: 0, x: -100 }}
+          animate={{ scale: 1, opacity: 1, x: 0 }}
+          exit={{ scale: 0, opacity: 0, x: 100 }}
+          transition={{ duration: 0.3 }}
+          className="absolute bottom-10 left-10"
+        >
+          <span className="bg-green-200/50 p-3 rounded-2xl">
+            Signup Was Successful <CheckCheck className="inline text-green-500" />
+          </span>
+        </motion.div>
+      )}
+    </AnimatePresence>
+    </>
   )
 }
 
