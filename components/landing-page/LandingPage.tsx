@@ -6,6 +6,7 @@ import Link from "next/link"
 import { Instagram, Linkedin, Github } from "lucide-react"
 import { Spotlight } from "../ui/spotlight-new"
 import { TypewriterEffectSmooth } from "../ui/typewriter-effect"
+import CircularText from "../circular-text/CircularText"
 
 const words = [
   {
@@ -51,7 +52,7 @@ const GradientOverlay = () => {
 
 export default function LandingPage() {
   return (
-    <div className="m-3 rounded-3xl relative flex flex-col items-center justify-center h-[96vh] overflow-hidden bg-zinc-900 text-white">
+    <div className="m-3 rounded-4xl relative flex flex-col items-center justify-center h-[96vh] overflow-hidden bg-zinc-900 text-white">
       <GradientOverlay />
 
       <motion.div
@@ -96,7 +97,12 @@ export default function LandingPage() {
         transition={{ delay: 0.7, duration: 0.5 }}
         className="absolute bottom-4 right-4 text-sm text-white"
       >
-        Made with ❤️ by Hadi
+      <CircularText
+        text="BOOST*YOUR*GAINS*"
+        onHover="goBonkers"
+        spinDuration={20}
+        className="custom-class"
+      />
       </motion.div>
     </div>
   )
