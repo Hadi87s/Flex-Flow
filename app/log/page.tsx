@@ -1,4 +1,4 @@
-import { ThreeDCardDemo } from '@/component/ui/ThreeDCardDemo'
+import { ThreeDCardDemo } from '@/components/ui/ThreeDCardDemo'
 import React from 'react'
 
 const data = [
