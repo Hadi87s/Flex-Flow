@@ -22,15 +22,20 @@ export default function SignupPage() {
     e.preventDefault()
     if (!validateEmail(email)) {
       setError({...error, emailError: true});
-    }
+      return;
+    } 
+
     if (!validatePassword(password)) {
-      setError({...error, passwordError: true});
+      setError({...error, passwordError: true, passwordMismatch: false});
+      return;
     }
     if(password != confirmPassword) {
-      setError({...error, passwordMismatch: true});
+      setError({...error, passwordError: false, passwordMismatch: true});
+      return;
     }
     // here the user is signedUp successfully! 
     setIsSuccessful(true);
+    setError({ emailError: false, passwordError: false, passwordMismatch: false});
     }
 
     useEffect(()=> {
@@ -46,19 +51,19 @@ export default function SignupPage() {
   return (
     <>
     <div className="flex items-center justify-center min-h-screen bg-zinc-900 p-6">
-      <div className="w-full max-w-4xl flex rounded-3xl overflow-hidden shadow-2xl">
+      <div className="w-full max-w-4xl flex flex-wrap rounded-3xl overflow-hidden shadow-2xl">
         <motion.div
           initial={{ opacity: 0, x: -50 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.5 }}
-          className="w-1/2 bg-zinc-800 p-12"
+          className="w-full md:w-1/2 bg-zinc-800 p-12"
         >
           <div className="max-w-md mx-auto">
             <motion.h2
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2, duration: 0.5 }}
-              className="text-3xl font-extrabold text-white mb-6"
+              className="text-3xl text-center md:text-left font-extrabold text-white mb-6"
             >
               Create Your Account
             </motion.h2>
@@ -181,7 +186,7 @@ export default function SignupPage() {
           initial={{ opacity: 0, x: 50 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.5 }}
-          className="w-1/2 bg-zinc-800 flex items-center justify-center p-12"
+          className="w-1/2 bg-zinc-800 hidden md:flex items-center justify-center p-12"
         >
           <div className="w-full h-full bg-gradient-to-br from-orange-800 to-orange-600 rounded-2xl flex items-center justify-center overflow-hidden relative">
             <div className="absolute inset-0 bg-black opacity-20"></div>

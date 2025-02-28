@@ -23,14 +23,14 @@ export default function LoginPage() {
           initial={{ opacity: 0, x: -50 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.5 }}
-          className="w-1/2 bg-zinc-800 p-12"
+          className="w-full md:w-1/2 bg-zinc-800 p-12"
         >
           <div className="max-w-md mx-auto">
             <motion.h2
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2, duration: 0.5 }}
-              className="text-3xl font-extrabold text-white mb-6"
+              className="text-center md:text-left text-3xl font-extrabold text-white mb-6"
             >
               Welcome Back
             </motion.h2>
@@ -110,7 +110,7 @@ export default function LoginPage() {
           initial={{ opacity: 0, x: 50 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.5 }}
-          className="w-1/2 bg-zinc-800 flex items-center justify-center p-12"
+          className="w-1/2 bg-zinc-800 hidden md:flex items-center justify-center p-12"
         >
           <div className="w-full h-full bg-gradient-to-br from-orange-800 to-orange-600 rounded-2xl flex items-center justify-center overflow-hidden relative">
             <div className="absolute inset-0 bg-black opacity-20"></div>
