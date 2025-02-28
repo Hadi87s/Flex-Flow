@@ -8,6 +8,7 @@ import Link from "next/link"
 import { validateEmail, validatePassword } from "@/utils/validator"
 import ErrorMessage from "@/components/error-message/ErrorMessage"
 import { CheckCheck } from "lucide-react"
+import { useRouter } from "next/navigation"
 
 export default function SignupPage() {
   const [name, setName] = useState("")
@@ -17,7 +18,7 @@ export default function SignupPage() {
   const [error, setError] = useState<Validate>({emailError: false, passwordError: false, passwordMismatch: false});
   const [isSuccessful, setIsSuccessful] = useState(false);
   const DISPLAY_DURATION = 2000;
-
+  const router = useRouter();
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
     if (!validateEmail(email)) {
@@ -36,13 +37,21 @@ export default function SignupPage() {
     // here the user is signedUp successfully! 
     setIsSuccessful(true);
     setError({ emailError: false, passwordError: false, passwordMismatch: false});
+    
+    const user = {
+      name: name,
+      email: email,
+      password: password
     }
+    localStorage.setItem("user", JSON.stringify(user)); //adding the signedUp user to local storage.
+  }
 
     useEffect(()=> {
       let timeoutId : NodeJS.Timeout;
       if(isSuccessful){
         timeoutId =  setTimeout(()=> {
           setIsSuccessful(false);
+          router.push("/questionnaire");
         }, DISPLAY_DURATION);
       }
       return () => clearTimeout(timeoutId);
@@ -158,7 +167,7 @@ export default function SignupPage() {
               >
                 <button
                   type="submit"
-                  className="cursor-pointer w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-orange-800 hover:bg-orange-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500 transition duration-150 ease-in-out"
+                  className="cursor-pointer w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-orange-800 hover:bg-orange-900 focus:ring-1 focus:ring-offset-2 transition duration-150 ease-in-out"
                 >
                   Sign up
                 </button>
