@@ -2,36 +2,68 @@
 
 import type React from "react"
 
-import { useState } from "react"
-import { motion } from "framer-motion"
+import { useEffect, useState } from "react"
+import { AnimatePresence, motion } from "framer-motion"
 import Link from "next/link"
+import { validateEmail, validatePassword } from "@/utils/validator"
+import ErrorMessage from "@/components/error-message/ErrorMessage"
+import { CheckCheck } from "lucide-react"
 
 export default function SignupPage() {
   const [name, setName] = useState("")
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [confirmPassword, setConfirmPassword] = useState("")
+  const [error, setError] = useState<Validate>({emailError: false, passwordError: false, passwordMismatch: false});
+  const [isSuccessful, setIsSuccessful] = useState(false);
+  const DISPLAY_DURATION = 2000;
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    // Handle signup logic here
-  }
+    if (!validateEmail(email)) {
+      setError({...error, emailError: true});
+      return;
+    } 
+
+    if (!validatePassword(password)) {
+      setError({...error, passwordError: true, passwordMismatch: false});
+      return;
+    }
+    if(password != confirmPassword) {
+      setError({...error, passwordError: false, passwordMismatch: true});
+      return;
+    }
+    // here the user is signedUp successfully! 
+    setIsSuccessful(true);
+    setError({ emailError: false, passwordError: false, passwordMismatch: false});
+    }
+
+    useEffect(()=> {
+      let timeoutId : NodeJS.Timeout;
+      if(isSuccessful){
+        timeoutId =  setTimeout(()=> {
+          setIsSuccessful(false);
+        }, DISPLAY_DURATION);
+      }
+      return () => clearTimeout(timeoutId);
+    },[isSuccessful])
 
   return (
+    <>
     <div className="flex items-center justify-center min-h-screen bg-zinc-900 p-6">
-      <div className="w-full max-w-4xl flex rounded-3xl overflow-hidden shadow-2xl">
+      <div className="w-full max-w-4xl flex flex-wrap rounded-3xl overflow-hidden shadow-2xl">
         <motion.div
           initial={{ opacity: 0, x: -50 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.5 }}
-          className="w-1/2 bg-zinc-800 p-12"
+          className="w-full md:w-1/2 bg-zinc-800 p-12"
         >
           <div className="max-w-md mx-auto">
             <motion.h2
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2, duration: 0.5 }}
-              className="text-3xl font-extrabold text-white mb-6"
+              className="text-3xl text-center md:text-left font-extrabold text-white mb-6"
             >
               Create Your Account
             </motion.h2>
@@ -75,6 +107,7 @@ export default function SignupPage() {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                 />
+                <ErrorMessage error={error.emailError} message="Invalid Email Address."/>
               </motion.div>
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -115,6 +148,8 @@ export default function SignupPage() {
                   value={confirmPassword}
                   onChange={(e) => setConfirmPassword(e.target.value)}
                 />
+                <ErrorMessage error={error.passwordError} message="Password must be at least 8 characters long with at least a capital, a small letter and and one special character."/>
+                <ErrorMessage error={error.passwordMismatch} message="Passwords doesn't match."/>
               </motion.div>
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -151,7 +186,7 @@ export default function SignupPage() {
           initial={{ opacity: 0, x: 50 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.5 }}
-          className="w-1/2 bg-zinc-800 flex items-center justify-center p-12"
+          className="w-1/2 bg-zinc-800 hidden md:flex items-center justify-center p-12"
         >
           <div className="w-full h-full bg-gradient-to-br from-orange-800 to-orange-600 rounded-2xl flex items-center justify-center overflow-hidden relative">
             <div className="absolute inset-0 bg-black opacity-20"></div>
@@ -186,6 +221,28 @@ export default function SignupPage() {
         </motion.div>
       </div>
     </div>
+    <AnimatePresence>
+      {isSuccessful && (
+        <motion.div 
+          initial={{ scale: 0, opacity: 0, x: -100 }}
+          animate={{ scale: 1, opacity: 1, x: 0 }}
+          exit={{ scale: 0, opacity: 0, x: 100 }}
+          transition={{ duration: 0.3 }}
+          className="absolute bottom-10 left-10"
+        >
+          <span className="bg-green-200/50 p-3 rounded-2xl">
+            Signup Was Successful <CheckCheck className="inline text-green-500" />
+          </span>
+          <motion.div 
+            initial={{ scaleX: 0 }}
+            animate={{ scaleX: 1 }}
+            transition={{ duration: DISPLAY_DURATION/1000, ease: "linear" }}
+            className="absolute p-[2px] -bottom-[9px] h-1 bg-green-500 ml-[5%]  w-[90%] origin-left rounded-4xl"
+          />
+        </motion.div>
+      )}
+    </AnimatePresence>
+    </>
   )
 }
 

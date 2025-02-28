@@ -98,7 +98,7 @@ export default function LandingPage() {
         className="absolute bottom-4 right-4 text-sm text-white"
       >
       <CircularText
-        text="BOOST*YOUR*GAINS*"
+        text="BOOST•YOUR•GAINS•"
         onHover="goBonkers"
         spinDuration={20}
         className="custom-class"
@@ -107,4 +107,3 @@ export default function LandingPage() {
     </div>
   )
 }
-
