@@ -39,7 +39,7 @@ const GradientOverlay = () => {
           "radial-gradient(circle at 50% 50%, rgba(180, 83, 9, 0.15) 0%, rgba(124, 45, 0, 0.1) 50%, transparent 100%)",         // Deep orange
           "radial-gradient(circle at 30% 70%, rgba(255, 215, 161, 0.1) 0%, rgba(252, 211, 77, 0.08) 50%, transparent 100%)",    // Pale orange
           "radial-gradient(circle at 70% 30%, rgba(249, 168, 37, 0.18) 0%, rgba(245, 158, 11, 0.12) 65%, transparent 100%)",    // Vibrant orange
-        ],
+        ], opacity: 1
       }, {
         duration: 25,  // Increased duration for smoother transition
         repeat: Number.POSITIVE_INFINITY,
@@ -47,23 +47,26 @@ const GradientOverlay = () => {
       })
     }, [controls])
   
-    return <motion.div className="absolute inset-0" animate={controls} />
+    return <motion.div  
+    initial={{ opacity: 0}}
+    transition={{ duration: 0.8 }} 
+    className="absolute inset-0" 
+    animate={controls} />
   }
 
 export default function LandingPage() {
   return (
     <div className="m-3 rounded-4xl relative flex flex-col items-center justify-center h-[96vh] overflow-hidden bg-zinc-900 text-white">
       <GradientOverlay />
-
+      <Spotlight />
       <motion.div
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
         className="z-10 text-center"
-      >
-        <Spotlight />
+      > 
         <TypewriterEffectSmooth words={words} />
-        <p className="text-xl mb-8">Track, analyze, and conquer your lifting goals</p>
+        <p className="text-sm xs:text-md sm:text-xl md:text-2xl lg:text:3xl xl:text-4xl mb-8">Track, analyze, and conquer your lifting goals</p>
         <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
           <Link
             href="/login"
