@@ -82,7 +82,7 @@ export default function LoginPage() {
               >
                 <button
                   type="submit"
-                  className="cursor-pointer w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-orange-800 hover:bg-orange-900 focus:outline-none focus:ring-orange-500 transition duration-150 ease-in-out"
+                  className="cursor-pointer w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-orange-800 hover:bg-orange-900 focus:ring-1 focus:ring-offset-2 transition duration-150 ease-in-out"
                 >
                   Sign in
                 </button>
