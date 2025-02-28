@@ -15,7 +15,9 @@ export default function SignupPage() {
   const [password, setPassword] = useState("")
   const [confirmPassword, setConfirmPassword] = useState("")
   const [error, setError] = useState<Validate>({emailError: false, passwordError: false, passwordMismatch: false});
-  const [isSuccessful, setIsSuccessful] = useState(false)
+  const [isSuccessful, setIsSuccessful] = useState(false);
+  const DISPLAY_DURATION = 2000;
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
     if (!validateEmail(email)) {
@@ -32,9 +34,13 @@ export default function SignupPage() {
     }
 
     useEffect(()=> {
-      setTimeout(()=> {
-        setIsSuccessful(false);
-      },3000)
+      let timeoutId : NodeJS.Timeout;
+      if(isSuccessful){
+        timeoutId =  setTimeout(()=> {
+          setIsSuccessful(false);
+        }, DISPLAY_DURATION);
+      }
+      return () => clearTimeout(timeoutId);
     },[isSuccessful])
 
   return (
@@ -222,6 +228,12 @@ export default function SignupPage() {
           <span className="bg-green-200/50 p-3 rounded-2xl">
             Signup Was Successful <CheckCheck className="inline text-green-500" />
           </span>
+          <motion.div 
+            initial={{ scaleX: 0 }}
+            animate={{ scaleX: 1 }}
+            transition={{ duration: DISPLAY_DURATION/1000, ease: "linear" }}
+            className="absolute p-[2px] -bottom-[9px] h-1 bg-green-500 ml-[5%]  w-[90%] origin-left rounded-4xl"
+          />
         </motion.div>
       )}
     </AnimatePresence>
