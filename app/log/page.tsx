@@ -1,5 +1,4 @@
 import { BentoTrackerCards } from '@/components/bento-grid/BentoTrackerCards'
-import { ThreeDCardDemo } from '@/components/ui/ThreeDCardDemo'
 import React from 'react'
 
 const data = [
@@ -37,11 +36,6 @@ const Page = () => {
   return (
     <div>
       <section className='my-5 flex justify-center items-center flex-wrap gap-5'>
-         {/* {
-            data.map((item, index)=> (
-                <ThreeDCardDemo  key={index}  src={item.src} group={item.group}/>
-            ))
-         } */}
          <BentoTrackerCards/>
       </section>
     </div>

@@ -4,6 +4,7 @@ import { Sidebar, SidebarBody, SidebarLink } from "../ui/sidebar";
 import {
   IconArrowLeft,
   IconBrandTabler,
+  IconChecklist,
   IconSettings,
   IconUserBolt,
 } from "@tabler/icons-react";
@@ -19,8 +20,15 @@ interface IContent {
 export function SideBar({children}: IContent) {
   const links = [
     {
-      label: "Dashboard",
+      label: "Tracker",
       href: "/log",
+      icon: (
+        <IconChecklist className="text-neutral-700 dark:text-neutral-200 h-6 w-6 flex-shrink-0" />
+      ),
+    },
+    {
+      label: "Dashboard",
+      href: "#",
       icon: (
         <IconBrandTabler className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
       ),
@@ -52,7 +60,7 @@ export function SideBar({children}: IContent) {
     <div
       className={cn(
         "fixed top-0 rounded-md flex flex-col md:flex-row bg-gray-100 dark:bg-neutral-950 w-full flex-1 mx-auto border border-neutral-200 dark:border-neutral-700",
-        "h-[100dvh]" // for your use case, use `h-screen` instead of `h-[60vh]`
+        "h-screen"
       )}
     >
       <Sidebar open={open} setOpen={setOpen}>
