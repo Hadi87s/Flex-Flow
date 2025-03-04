@@ -8,7 +8,8 @@ const nextConfig: NextConfig = {
       },
     ],
     domains: ['loremflickr.com']  // This to allow specific domains only
-  }
+  },
+  reactStrictMode: false,
 };
 
 export default nextConfig;
