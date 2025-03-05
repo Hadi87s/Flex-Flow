@@ -1,5 +1,4 @@
 "use client";
-
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ChevronRight } from 'lucide-react'
@@ -75,11 +74,19 @@ export default function Questionnaire() {
   const handleSubmit = () => {
     console.log('Final answers:', answers)
     // Here you would typically send the answers to your backend, I know :)
-    const user = JSON.parse(localStorage.getItem("user") || "{}");
+    const user : IUser = JSON.parse(localStorage.getItem("user") || "{}");
     const fullUserData = {...user, gender: answers[0], height: answers[1].split(",")[0], weight: answers[1].split(",")[1], split: answers[2], goal: answers[3]};
     // Send the fullUserData to be stored in the database, I will store it in the local storage until adding the database configuration.
     localStorage.setItem("user", JSON.stringify(fullUserData));
-    router.push("/log");
+    const users : IUser[] = JSON.parse(localStorage.getItem("users") || "[]");
+    console.log(users);
+    
+    const updatedUsers = users.map((u : IUser) => u.name === user.name? fullUserData : u);
+    console.log(updatedUsers);
+    
+    localStorage.setItem("users", JSON.stringify(updatedUsers));
+    localStorage.removeItem("user");
+    router.push("/login");
   }
 
   const isAnswered = () => {

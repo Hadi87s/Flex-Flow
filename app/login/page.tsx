@@ -5,14 +5,26 @@ import type React from "react"
 import { useState } from "react"
 import { motion } from "framer-motion"
 import Link from "next/link"
+import { useRouter } from "next/navigation"
 
 export default function LoginPage() {
+  const router = useRouter();
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    // Handle login logic here
+    const users : IUser[] = JSON.parse(localStorage.getItem("users") || "[]");
+    if(!users.length) {
+      console.log(`No users found`);
+      return;
+    }
+      const user = users.find(user => user.email === email && user.password === password);
+      if(user) {
+        router.push("/log");
+      } else {
+        alert("Login failed");
+      }
     console.log("Login attempted with:", email, password)
   }
 

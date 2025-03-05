@@ -1,7 +1,5 @@
 "use client"
-
 import type React from "react"
-
 import { useEffect, useState } from "react"
 import { AnimatePresence, motion } from "framer-motion"
 import Link from "next/link"
@@ -19,6 +17,7 @@ export default function SignupPage() {
   const [isSuccessful, setIsSuccessful] = useState(false);
   const DISPLAY_DURATION = 2000;
   const router = useRouter();
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
     if (!validateEmail(email)) {
@@ -30,6 +29,7 @@ export default function SignupPage() {
       setError({...error, passwordError: true, passwordMismatch: false});
       return;
     }
+    
     if(password != confirmPassword) {
       setError({...error, passwordError: false, passwordMismatch: true});
       return;
@@ -43,7 +43,10 @@ export default function SignupPage() {
       email: email,
       password: password
     }
-    localStorage.setItem("user", JSON.stringify(user)); //adding the signedUp user to local storage.
+
+    localStorage.setItem("user", JSON.stringify(user)); //storing the user in the local storage for now.
+    const users = JSON.parse(localStorage.getItem("users") || "[]");
+    localStorage.setItem("users", JSON.stringify([...users, user])); //adding the signedUp user to local storage.
   }
 
     useEffect(()=> {
