@@ -40,21 +40,21 @@ export const BentoGridItem = ({
   return (
     <div
       className={cn(
-        "row-span-1 rounded-xl group/bento hover:shadow-orange-800/20 hover:shadow-lg transition duration-200 shadow-input dark:shadow-none p-4 dark:bg-black dark:border-white/[0.2] bg-white border border-transparent justify-between flex flex-col space-y-4",
+        "z-20 row-span-1 rounded-xl group/bento hover:shadow-orange-800/20 hover:shadow-lg transition duration-200 shadow-input dark:shadow-none p-4 dark:bg-black dark:border-white/[0.2] bg-white border border-transparent justify-between flex flex-col space-y-4",
         className
       )}
     >
       {header}
-      <div className="group-hover/bento:translate-x-2 transition duration-200">
+      <div className="group-hover/bento:translate-x-2 p-2 transition duration-200">
         {icon}
-        <div className="font-sans font-bold text-neutral-600 dark:text-neutral-200 mb-2 mt-2">
+        <div className="text-2xl font-bold text-neutral-600 dark:text-neutral-200 mb-2 mt-2">
           {title}
         </div>
-        <div className="font-sans font-normal text-neutral-600 text-xs dark:text-neutral-300">
+        <div className="text-md font-normal text-neutral-600 dark:text-neutral-300">
           {description}
         </div>
+          <Link className="mt-2 w-fit flex group " href={src}><span className="transition-all duration-200 hover:underline hover:underline-offset-2">Track</span> <ExternalLink className="ml-1 mt-1 transition duration-200 group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:text-orange-500" size={13} /></Link>
       </div>
-       <Link className="w-fit flex group " href={src}><span className="transition-all duration-200 hover:underline hover:underline-offset-2">Track</span> <ExternalLink className="ml-1 mt-1 transition duration-200 group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:text-orange-500" size={13} /></Link>
     </div>
   );
 };

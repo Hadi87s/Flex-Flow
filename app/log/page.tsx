@@ -1,70 +1,40 @@
 import { BentoTrackerCards } from '@/components/bento-grid/BentoTrackerCards'
 import React from 'react'
 
-const data = [
+const BroDetails = [
     {
-        group: "Chest",
-        src: "/Chest.jpg"
+        title: "Chest",
+        description: "Impower your lifts on chest day.",
+        src: "/Chest"
     },
     {
-        group: "Back",
-        src: "/Back.jpg"
+        title: "Chest",
+        description: "Impower your lifts on chest day.",
+        src: "/Back"
     },
     {
-        group: "Legs",
-        src: "/Back.jpg"
+        title: "Chest",
+        description: "Impower your lifts on chest day.",
+        src: "/Legs"
     },
     {
-        group: "Back",
-        src: "/Back.jpg"
+        title: "Chest",
+        description: "Impower your lifts on chest day.",
+        src: "/Shoulders"
     },
     {
-        group: "Back",
-        src: "/Back.jpg"
-    },
-    {
-        group: "Back",
-        src: "/Back.jpg"
-    },
-    {
-        group: "Back",
-        src: "/Back.jpg"
+        title: "Chest",
+        description: "Impower your lifts on chest day.",
+        src: "/Arms"
     },
 ]
 
-const details = [
-    {
-        title: "Chest",
-        description: "Impower your lifts on chest day.",
-        src: "/something"
-    },
-    {
-        title: "Chest",
-        description: "Impower your lifts on chest day.",
-        src: "/something"
-    },
-    {
-        title: "Chest",
-        description: "Impower your lifts on chest day.",
-        src: "/something"
-    },
-    {
-        title: "Chest",
-        description: "Impower your lifts on chest day.",
-        src: "/something"
-    },
-    {
-        title: "Chest",
-        description: "Impower your lifts on chest day.",
-        src: "/something"
-    },
-]
 
 const Page = () => {
   return (
     <div>
       <section className='my-5 flex justify-center items-center flex-wrap gap-5'>
-         <BentoTrackerCards details={details}/>
+         <BentoTrackerCards details={BroDetails}/>
       </section>
     </div>
   )
