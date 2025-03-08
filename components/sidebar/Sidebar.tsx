@@ -18,6 +18,7 @@ interface IContent {
 }
 
 export function SideBar({children}: IContent) {
+
   const links = [
     {
       label: "Tracker",
@@ -25,34 +26,40 @@ export function SideBar({children}: IContent) {
       icon: (
         <IconChecklist className="text-neutral-700 dark:text-neutral-200 h-6 w-6 flex-shrink-0" />
       ),
+      callback: () => { },
     },
     {
       label: "Dashboard",
-      href: "#",
+      href: "/dashboard",
       icon: (
         <IconBrandTabler className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
       ),
+      callback: () => { },
     },
     {
       label: "Profile",
-      href: "#",
+      href: "/profile",
       icon: (
         <IconUserBolt className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
       ),
+      callback: () => { },
     },
     {
       label: "Settings",
-      href: "#",
+      href: "/settings",
       icon: (
         <IconSettings className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
       ),
+      callback: () => { },
     },
     {
       label: "Logout",
-      href: "#",
+      href: "/login",
       icon: (
         <IconArrowLeft className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
       ),
+      callback: () => {
+      },
     },
   ];
   const [open, setOpen] = useState(false);
