@@ -15,6 +15,7 @@ import Image from "next/image";
 interface Details {
   title: string;
   descriptionText: string;
+  src: string;
 }
 
 interface IDetails {
@@ -25,6 +26,7 @@ function loadDetails(details: Details[]) {
   items.forEach((item,index)=> {
     item.title = details[index].title;
     item.description = <span className="text-sm"> {details[index].descriptionText}</span>;
+    item.src = details[index].src;
 })}
 
 export function BentoTrackerCards({details} : IDetails) {
@@ -323,6 +325,7 @@ const items = [
     header: <SkeletonOne />,
     className: "md:col-span-1",
     icon: <IconClipboardCopy className="h-4 w-4 text-neutral-500" />,
+    src: "/something",
   },
   {
     title: "Automated Proofreading",
@@ -334,6 +337,7 @@ const items = [
     header: <SkeletonTwo />,
     className: "md:col-span-1",
     icon: <IconFileBroken className="h-4 w-4 text-neutral-500" />,
+    src: "/something",
   },
   {
     title: "Contextual Suggestions",
@@ -345,6 +349,7 @@ const items = [
     header: <SkeletonThree />,
     className: "md:col-span-1",
     icon: <IconSignature className="h-4 w-4 text-neutral-500" />,
+    src: "/something",
   },
   {
     title: "Sentiment Analysis",
@@ -356,6 +361,7 @@ const items = [
     header: <SkeletonFour />,
     className: "md:col-span-2",
     icon: <IconTableColumn className="h-4 w-4 text-neutral-500" />,
+    src: "/something",
   },
 
   {
@@ -368,5 +374,6 @@ const items = [
     header: <SkeletonFive />,
     className: "md:col-span-1",
     icon: <IconBoxAlignRightFilled className="h-4 w-4 text-neutral-500" />,
+    src: "/something",
   },
 ];
