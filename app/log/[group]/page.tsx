@@ -1,5 +1,4 @@
 import MuscleGroup from '@/components/muscle-group/MuscleGroup';
-import { log } from 'console';
 import React from 'react'
 
 const data = {

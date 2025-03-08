@@ -2,101 +2,85 @@
 import { cn } from "@/lib/utils";
 import React from "react";
 import { BentoGrid, BentoGridItem } from "../ui/bento-grid";
-import {
-  IconBoxAlignRightFilled,
-  IconClipboardCopy,
-  IconFileBroken,
-  IconSignature,
-  IconTableColumn,
-} from "@tabler/icons-react";
 import { SkeletonFive, SkeletonFour, SkeletonOne, SkeletonThree, SkeletonTwo } from "../skeletons/Skeletons";
 
-interface Details {
-  title: string;
-  description: string;
-  src: string;
-}
-
-interface IDetails {
-  details: Details[]
-}
+import { Dumbbell, ArrowLeft, Footprints, Hand, ShieldCheck } from "lucide-react";
 
 const items = [
   {
-    title: "AI Content Generation",
+    title: "Chest Workout",
     description: (
       <span className="text-sm">
-        Experience the power of AI in generating unique content.
+        Build a stronger chest with targeted exercises.
       </span>
     ),
     header: <SkeletonOne />,
     className: "md:col-span-1",
-    icon: <IconClipboardCopy className="h-4 w-4 text-neutral-500" />,
-    src: "/something",
+    icon: <Dumbbell className="h-4 w-4" />, // Chest-focused icon
+    src: "/log/Chest",
   },
   {
-    title: "Automated Proofreading",
+    title: "Back Training",
     description: (
       <span className="text-sm">
-        Let AI handle the proofreading of your documents.
+        Strengthen your back for better posture and power.
       </span>
     ),
     header: <SkeletonTwo />,
     className: "md:col-span-1",
-    icon: <IconFileBroken className="h-4 w-4 text-neutral-500" />,
-    src: "/something",
+    icon: <ArrowLeft className="h-4 w-4" />, // Back workout-related icon
+    src: "log//Back",
   },
   {
-    title: "Contextual Suggestions",
+    title: "Leg Day Essentials",
     description: (
       <span className="text-sm">
-        Get AI-powered suggestions based on your writing context.
+        Improve lower body strength with key leg exercises.
       </span>
     ),
     header: <SkeletonThree />,
     className: "md:col-span-1",
-    icon: <IconSignature className="h-4 w-4 text-neutral-500" />,
-    src: "/something",
+    icon: <Footprints className="h-4 w-4" />, // Running/leg day icon
+    src: "/log/Legs",
   },
   {
-    title: "Sentiment Analysis",
+    title: "Arm & Biceps Training",
     description: (
       <span className="text-sm">
-        Understand the sentiment of your text with AI analysis.
+        Sculpt powerful arms with biceps and triceps workouts.
       </span>
     ),
     header: <SkeletonFour />,
     className: "md:col-span-2",
-    icon: <IconTableColumn className="h-4 w-4 text-neutral-500" />,
-    src: "/something",
+    icon: <Hand className="h-4 w-4" />, // Flexed bicep icon
+    src: "/log/Arms",
   },
-
   {
-    title: "Text Summarization",
+    title: "Shoulder & Upper Body",
     description: (
       <span className="text-sm">
-        Summarize your lengthy documents with AI technology.
+        Build strong and broad shoulders for a balanced physique.
       </span>
     ),
     header: <SkeletonFive />,
     className: "md:col-span-1",
-    icon: <IconBoxAlignRightFilled className="h-4 w-4 text-neutral-500" />,
-    src: "/something",
+    icon: <ShieldCheck className="h-4 w-4" />, // Shoulder/upper body-related icon
+    src: "/log/Shoulders",
   },
 ];
 
-export function BentoTrackerCards({details} : IDetails) {
+export function BentoTrackerCards() {
   return (
     <BentoGrid className="p-4 md:auto-rows-[20rem]">
       {items.map((item, i) => (
         <BentoGridItem
           key={i}
-          title={details[i].title}
-          description={details[i].description}
+          title={item.title}
+          description={item.description}
           header={item.header}
           className={cn("[&>p:text-lg]", item.className)}
           icon={item.icon}
-          src = {details[i].src}
+          src = {item.src}
         />
       ))}
     </BentoGrid>
