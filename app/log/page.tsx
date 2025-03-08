@@ -32,11 +32,34 @@ const data = [
     },
 ]
 
+const details = [
+    {
+        title: "Chest",
+        descriptionText: "Impower your lifts on chest day."
+    },
+    {
+        title: "Chest",
+        descriptionText: "Impower your lifts on chest day."
+    },
+    {
+        title: "Chest",
+        descriptionText: "Impower your lifts on chest day."
+    },
+    {
+        title: "Chest",
+        descriptionText: "Impower your lifts on chest day."
+    },
+    {
+        title: "Chest",
+        descriptionText: "Impower your lifts on chest day."
+    },
+]
+
 const Page = () => {
   return (
     <div>
       <section className='my-5 flex justify-center items-center flex-wrap gap-5'>
-         <BentoTrackerCards/>
+         <BentoTrackerCards details={details}/>
       </section>
     </div>
   )
