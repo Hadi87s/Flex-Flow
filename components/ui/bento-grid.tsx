@@ -1,4 +1,7 @@
 import { cn } from "@/lib/utils";
+import { small } from "framer-motion/client";
+import { ExternalLink } from "lucide-react";
+import Link from "next/link";
 
 export const BentoGrid = ({
   className,
@@ -25,12 +28,14 @@ export const BentoGridItem = ({
   description,
   header,
   icon,
+  src
 }: {
   className?: string;
   title?: string | React.ReactNode;
   description?: string | React.ReactNode;
   header?: React.ReactNode;
   icon?: React.ReactNode;
+  src: string
 }) => {
   return (
     <div
@@ -49,6 +54,7 @@ export const BentoGridItem = ({
           {description}
         </div>
       </div>
+       <Link className="w-fit flex group " href={src}><span className="transition-all duration-200 hover:underline hover:underline-offset-2">Track</span> <ExternalLink className="ml-1 mt-1 transition duration-200 group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:text-orange-500" size={13} /></Link>
     </div>
   );
 };

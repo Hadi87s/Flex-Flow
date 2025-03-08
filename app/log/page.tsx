@@ -35,27 +35,27 @@ const data = [
 const details = [
     {
         title: "Chest",
-        descriptionText: "Impower your lifts on chest day.",
+        description: "Impower your lifts on chest day.",
         src: "/something"
     },
     {
         title: "Chest",
-        descriptionText: "Impower your lifts on chest day.",
+        description: "Impower your lifts on chest day.",
         src: "/something"
     },
     {
         title: "Chest",
-        descriptionText: "Impower your lifts on chest day.",
+        description: "Impower your lifts on chest day.",
         src: "/something"
     },
     {
         title: "Chest",
-        descriptionText: "Impower your lifts on chest day.",
+        description: "Impower your lifts on chest day.",
         src: "/something"
     },
     {
         title: "Chest",
-        descriptionText: "Impower your lifts on chest day.",
+        description: "Impower your lifts on chest day.",
         src: "/something"
     },
 ]
