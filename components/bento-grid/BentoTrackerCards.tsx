@@ -12,7 +12,23 @@ import {
 import { motion } from "framer-motion";
 import Image from "next/image";
 
-export function BentoTrackerCards() {
+interface Details {
+  title: string;
+  descriptionText: string;
+}
+
+interface IDetails {
+  details: Details[]
+}
+
+function loadDetails(details: Details[]) {
+  items.forEach((item,index)=> {
+    item.title = details[index].title;
+    item.description = <span className="text-sm"> {details[index].descriptionText}</span>;
+})}
+
+export function BentoTrackerCards({details} : IDetails) {
+   loadDetails(details);
   return (
     <BentoGrid className="p-4 md:auto-rows-[20rem]">
       {items.map((item, i) => (
