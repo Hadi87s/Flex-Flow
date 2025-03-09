@@ -1,5 +1,4 @@
 import MuscleGroup from '@/components/muscle-group/MuscleGroup';
-import { log } from 'console';
 import React from 'react'
 
 const data = {
@@ -29,7 +28,7 @@ const page = async ({params} : IProps) => {
     const group = (await params).group
     console.log(group);
   return (
-    <div>
+    <div className='p-4'>
         <MuscleGroup muscleGroup={data.group} exercises={data.exercises}/>
     </div>
   )
