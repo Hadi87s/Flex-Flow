@@ -1,1 +1,2 @@
 # Flex Flow, Designed to help you log your lifts.
+![CodeRabbit Pull Request Reviews](https://img.shields.io/coderabbit/prs/github/Hadi87s/Flex-Flow?labelColor=171717&color=FF570A&link=https%3A%2F%2Fcoderabbit.ai&label=CodeRabbit%20Reviews)
